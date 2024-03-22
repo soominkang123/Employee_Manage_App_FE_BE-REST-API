@@ -36,8 +36,8 @@ function App() {
 
   }
   return (
-    <>
-      <div>
+    <Appwap>
+      <div className='appContentWrap'>
         <h1> Open API 를 사용해서 axios를 사용해서 날씨데이터 출력 </h1>
         < p/><p />
         <input placeholder='도시명을 영문으로 입력해라.'
@@ -57,18 +57,42 @@ function App() {
         Object.keys(result).length !== 0 && (
             <div>
                <div> 도시명 : {result.data.name}</div>
-               <div> 기온 : {}</div>
+               <div> 기온 : {   Math.round((result.data.main.temp - 237.15)* 10) / 10   }도(c) </div>
                <div> 날씨 : {result.data.weather[0].main}</div>
             </div>
         )
        }
-
-
-
       </div>
- 
-    </>
+
+    </Appwap>
   )
 }
 
 export default App
+
+// styled-components 라이브러리를 사용해서 css 적용
+  // 컴포넌트 내부에서 css 적용 
+const Appwap = styled.div`
+   background-color : 1px solid red;
+   width : 100vW;
+   height : 100vh;
+
+   .appContentWrap{
+       left : 50% ;
+       top : 50% ;
+       position : absolute;
+       padding :20px;
+       transform : translate(-50% , -50%);
+   }
+
+       input {
+        padding : 16px ;
+        border : 2px block solid ;
+        font-size : 20px
+        border-radious : 16px ;
+
+       }
+     
+   
+
+`
